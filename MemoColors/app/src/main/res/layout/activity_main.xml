@@ -52,7 +52,7 @@
         <ImageButton
             android:id="@+id/btnCima"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:background="@color/amarelo"
             android:onClick="selecionar" />
@@ -74,7 +74,7 @@
         <ImageButton
             android:id="@+id/btnEsquerda"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:background="@color/verde"
             android:onClick="selecionar"
@@ -88,7 +88,7 @@
         <ImageButton
             android:id="@+id/btnDireita"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:background="@color/azul"
             android:onClick="selecionar" />
@@ -110,7 +110,7 @@
         <ImageButton
             android:id="@+id/btnBaixo"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:background="@color/vermelho"
             android:onClick="selecionar" />

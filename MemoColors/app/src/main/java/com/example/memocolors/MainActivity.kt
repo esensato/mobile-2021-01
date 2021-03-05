@@ -56,17 +56,20 @@ class MainActivity : AppCompatActivity() {
                        if (apagar) {
                            val btn = obterBotao(sorteados.get(pos))
                            corOriginal = (btn.background as ColorDrawable).color
-                           btn.setBackgroundColor(Color.WHITE)
-                           apagar = false
-
-                           handler.post {
-                               Toast.makeText(baseContext, "Oi", Toast.LENGTH_LONG).show()
+                           runOnUiThread {
+                               btn.setBackgroundColor(Color.WHITE)
 
                            }
+                           apagar = false
+
                        } else {
                            try {
 
-                               obterBotao(sorteados.get(pos)).setBackgroundColor(corOriginal)
+                               var btn = obterBotao(sorteados.get(pos))
+                               runOnUiThread {
+                                   btn.setBackgroundColor(corOriginal)
+                               }
+
                                apagar = true
                                pos++
 
