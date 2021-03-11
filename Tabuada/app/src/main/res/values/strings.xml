@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Tabuada</string>
+    <string name="btnResposta">Resposta</string>
+    <string name="msgResposta">Sua resposta está <b>%1$s!</b></string>
+    <string name="lblCorreto">Correta</string>
+    <string name="lblErrado">Errada</string>
+
+</resources>
