@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/txtTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -55,7 +55,8 @@
             android:layout_height="80dp"
             android:layout_weight="1"
             android:background="@color/amarelo"
-            android:onClick="selecionar" />
+            android:onClick="selecionar"
+            android:contentDescription="TODO" />
 
         <Space
             android:layout_width="wrap_content"
@@ -78,7 +79,8 @@
             android:layout_weight="1"
             android:background="@color/verde"
             android:onClick="selecionar"
-            android:scaleType="centerInside" />
+            android:scaleType="centerInside"
+            android:contentDescription="TODO" />
 
         <Space
             android:layout_width="wrap_content"
