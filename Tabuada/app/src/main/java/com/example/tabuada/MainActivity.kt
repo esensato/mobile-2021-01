@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.SeekBar
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
