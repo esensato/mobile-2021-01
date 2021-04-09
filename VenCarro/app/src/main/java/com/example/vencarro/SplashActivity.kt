@@ -9,11 +9,18 @@ import android.os.Looper
 import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
+import com.example.vencarro.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
+
+    lateinit var binding:ActivitySplashBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
 
         //oculta a action bar
         supportActionBar!!.hide()
