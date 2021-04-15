@@ -67,12 +67,47 @@ class ListaFragment : Fragment() {
 
             // cria a fila de requisições http
             queue = Volley.newRequestQueue(context)
-            obterMarcas()
+            obterMarcasMock()
+            //obterMarcas()
             veiculoSelecionado = VeiculoModel(0, "", 0, "", "", "")
             //listaVeiculo.add(VeiculoModel(1, "Fiat", 1, "Uno", "1", "2010"))
             //listaVeiculo.add(VeiculoModel(1, "Ford", 1, "Ranger", "1", "2015"))
             //listaVeiculo.add(VeiculoModel(1, "AUDIT", 1, "A5", "1", "2010"))
 
+        }
+
+        fun obterMarcasMock() {
+            listaVeiculo.add(VeiculoModel(1, "Fiat", 0, "-", "", "-"))
+            listaVeiculo.add(VeiculoModel(2, "Ford", 0, "-", "", "-"))
+            listaVeiculo.add(VeiculoModel(3, "GM", 0, "-", "", "-"))
+
+            notifyDataSetChanged()
+        }
+
+        fun obterModelosMock(id:Int) {
+            listaVeiculo.clear()
+            listaVeiculo.add(VeiculoModel(1, "Fiat", 1, "Toro", "", "-"))
+            listaVeiculo.add(VeiculoModel(1, "Fiat", 2, "Uno", "", "-"))
+            listaVeiculo.add(VeiculoModel(1, "Fiat", 3, "Strada", "", "-"))
+
+            notifyDataSetChanged()
+        }
+
+        fun obterAnosMock(id:Int, id2:Int) {
+            listaVeiculo.clear()
+            listaVeiculo.add(VeiculoModel(1, "Fiat", 1, "Toro", "1", "1.6 Hibrido"))
+            listaVeiculo.add(VeiculoModel(1, "Fiat", 2, "Toro", "2", "2.0 Alcool"))
+            listaVeiculo.add(VeiculoModel(1, "Fiat", 3, "Toro", "3", "1.4 Gasolina"))
+
+            notifyDataSetChanged()
+        }
+
+        fun obterprecoMock(id:Int, id2:Int, id3: String) {
+            listaVeiculo.add(VeiculoModel(1, "Fiat", 1, "Toro", "1", "1.6 Hibrido"))
+            listaVeiculo.add(VeiculoModel(1, "Fiat", 2, "Toro", "2", "2.0 Alcool"))
+            listaVeiculo.add(VeiculoModel(1, "Fiat", 3, "Toro", "3", "1.4 Gasolina"))
+
+            notifyDataSetChanged()
         }
 
         // requisicoes HTTP para obter os dados
@@ -202,12 +237,12 @@ class ListaFragment : Fragment() {
                     //armazena o id e nome da marca selecionada
                     veiculoSelecionado = listaVeiculo.get(position)
                     if (veiculoSelecionado.idModelo == 0) {
-                        obterModelos(veiculoSelecionado.idMarca)
+                        obterModelosMock(veiculoSelecionado.idMarca)
                     } else if (veiculoSelecionado.idModelo != 0 && veiculoSelecionado.idAno == ""){
-                        obterAnos(veiculoSelecionado.idMarca,
+                        obterAnosMock(veiculoSelecionado.idMarca,
                         veiculoSelecionado.idModelo)
                     } else {
-                        obterPreco(veiculoSelecionado.idMarca,
+                        obterprecoMock(veiculoSelecionado.idMarca,
                         veiculoSelecionado.idModelo,
                         veiculoSelecionado.idAno)
                     }
