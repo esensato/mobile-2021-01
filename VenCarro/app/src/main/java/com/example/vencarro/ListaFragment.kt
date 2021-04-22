@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vencarro.databinding.FragmentListaVeiculoBinding
@@ -47,7 +48,7 @@ class ListaFragment : Fragment() {
 
     // cria o adapter para a lista de veiculos
     // recebe o contexto do fragment como parametro
-    class VeiculoAdapter(context:Context?):RecyclerView.Adapter<VeiculoHolder>() {
+    class VeiculoAdapter(var context:Context?):RecyclerView.Adapter<VeiculoHolder>() {
 
         // endpoint da tabela fipe que retornar as marcas de veiculo
         val URL_MARCA = "https://fipeapi.appspot.com/api/1/carros/marcas.json"
@@ -67,7 +68,7 @@ class ListaFragment : Fragment() {
 
             // cria a fila de requisições http
             queue = Volley.newRequestQueue(context)
-            obterMarcasMock()
+            obterMarcas()
             //obterMarcas()
             veiculoSelecionado = VeiculoModel(0, "", 0, "", "", "")
             //listaVeiculo.add(VeiculoModel(1, "Fiat", 1, "Uno", "1", "2010"))
@@ -103,11 +104,15 @@ class ListaFragment : Fragment() {
         }
 
         fun obterprecoMock(id:Int, id2:Int, id3: String) {
-            listaVeiculo.add(VeiculoModel(1, "Fiat", 1, "Toro", "1", "1.6 Hibrido"))
-            listaVeiculo.add(VeiculoModel(1, "Fiat", 2, "Toro", "2", "2.0 Alcool"))
-            listaVeiculo.add(VeiculoModel(1, "Fiat", 3, "Toro", "3", "1.4 Gasolina"))
 
-            notifyDataSetChanged()
+            // necessario trocar o fragment de ListaFragment -> ResumoFragment
+            // solicitar para a activity a troca
+
+            veiculoSelecionado.modelo = "Toro"
+            veiculoSelecionado.preco = "R$ 50.000"
+
+            (context as MainActivity).exibeResumo(veiculoSelecionado)
+
         }
 
         // requisicoes HTTP para obter os dados
@@ -205,6 +210,8 @@ class ListaFragment : Fragment() {
                 JsonObjectRequest(URL_FINAL, null,
                     Response.Listener<JSONObject> { response ->
                         Log.i("FIPE", "Preco = " + response.getString("preco"))
+                        veiculoSelecionado.preco = response.getString("preco")
+                        (context as MainActivity).exibeResumo(veiculoSelecionado)
 
                     },
                     Response.ErrorListener { error ->
@@ -236,13 +243,14 @@ class ListaFragment : Fragment() {
                     Log.i("FIPE", listaVeiculo.get(position).marca)
                     //armazena o id e nome da marca selecionada
                     veiculoSelecionado = listaVeiculo.get(position)
+
                     if (veiculoSelecionado.idModelo == 0) {
-                        obterModelosMock(veiculoSelecionado.idMarca)
+                        obterModelos(veiculoSelecionado.idMarca)
                     } else if (veiculoSelecionado.idModelo != 0 && veiculoSelecionado.idAno == ""){
-                        obterAnosMock(veiculoSelecionado.idMarca,
+                        obterAnos(veiculoSelecionado.idMarca,
                         veiculoSelecionado.idModelo)
                     } else {
-                        obterprecoMock(veiculoSelecionado.idMarca,
+                        obterPreco(veiculoSelecionado.idMarca,
                         veiculoSelecionado.idModelo,
                         veiculoSelecionado.idAno)
                     }
